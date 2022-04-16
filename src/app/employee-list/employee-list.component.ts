@@ -12,12 +12,13 @@ export class EmployeeListComponent implements OnInit {
   
   employees!: Employee[];
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
     
-   // this.getEmployees();
-    this.employees = [{"id":1,"name":"Sadman","phone":1913380601,"email":"sadmanfatin91@gmail.com"},{"id":2,"name":"fatin","phone":1913380602,"email":"sadmanfatin91@gmail.com"},{"id":3,"name":"fatina","phone":1913380603,"email":"sadmanfatin91@gmail.com"},{"id":4,"name":"AAAAA","phone":19133555555,"email":"sadmanfatin208@gmail.com"}]
+    this.getEmployees();
+    
+  //  this.employees = [{"id":1,"name":"Sadman","phone":1913380601,"email":"sadmanfatin91@gmail.com"}]
   }
 
   private getEmployees(){
@@ -29,14 +30,10 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  // private getEmployees(){
- 
-  //   console.log("================== in getEmployees() =============== ");
-  //   this.employeeService.getEmployeeList().subscribe(
-  //   (response: Employee[]) => {
-  //     this.employees = response;
-  //    // console.log(data);
-  //   });
-  // }
+  updateEmployee(id: number){
+    this.router.navigate(['update-employee',id])
+  }
+
+  
   
 }
