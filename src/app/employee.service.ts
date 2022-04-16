@@ -8,19 +8,39 @@ import { Employee } from './employee';
 })
 export class EmployeeService {
  
-  private baseUrl = "http://localhost:8080/employee/all";
+  private baseUrl = "http://localhost:8080/employee";
   //private baseUrl = "https://api.publicapis.org/entries";
   
   constructor(private httpClient: HttpClient) { }
 
   getEmployeeList(): Observable<Employee[]>{
     console.log("================  in   getEmployeeList() =============");
-    return this.httpClient.get<Employee[]>(`${this.baseUrl}`);
+    return this.httpClient.get<Employee[]>(`${this.baseUrl}/all`);
    }
 
  
   // getEmployeeList(): Observable<any>{
   //   return this.httpClient.get<any>(`${this.baseUrl}`); 
   //  }
+
+  createEmployee(employee: Employee): Observable<Object>{
+    return this.httpClient.post(`${this.baseUrl}/add`, employee);
+  }
+
+  getEmployeeById(id: number): Observable<Employee>{
+    return this.httpClient.get<Employee>(`${this.baseUrl}/find/${id}`);
+  }
+
+ updateEmployee(employee: Employee): Observable<Object>{
+    return this.httpClient.put(`${this.baseUrl}/update`, employee);
+    
+  }
+
+  // deleteEmployee(id: number){
+  //   this.employeeService.deleteEmployee(id).subscribe( data => {
+  //     console.log(data);
+  //     this.getEmployees();
+  //   })
+  // }
 
 }
