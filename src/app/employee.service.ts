@@ -36,11 +36,12 @@ export class EmployeeService {
     
   }
 
-  // deleteEmployee(id: number){
-  //   this.employeeService.deleteEmployee(id).subscribe( data => {
-  //     console.log(data);
-  //     this.getEmployees();
-  //   })
-  // }
+  deleteEmployee(id: number): Observable<Object>{
+    console.log("=======in emp service delete employee =============");
+    console.log (id);
+    return this.httpClient.delete(`${this.baseUrl}/delete/${id}`);
+     console.log(`${this.baseUrl}/delete/${id}`);
+     
+  }
 
 }
